@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                    <h3>
+                        What is the world's larget bear by weight on average?
+                    </h3>
+                    <button class="correct answer">Polar Bear</button>
+                    <button class="wrong answer">Kodiak Bear</button>
+                    <button class="wrong answer">Grizzly Bear</button>
+                    <button class="wrong answer">Giant PandaBear Bear</button>
+                    <p id="response1"></p>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                    <h3>What kind of bear is found on the Archipelago islands?</h3>
+                    <input type="text"></input> <button id="check">Check</button>
+                    <p id="response2"></p>
+            </div>
+        </div>
+        <script>
+        // Multiple Choice
+        function checkClicked(){
+            let buttons = Array.from(document.querySelectorAll(".answer"));
+            for (let i = 0; i < buttons.length; i++){
+                buttons[i].onclick = function() {changeColor(buttons[i])};
+            }
+        }
+
+        function changeColor(button){
+                if(button.classList[0] == "correct"){
+                    button.style.backgroundColor = "green";
+                    document.getElementById("response1").innerHTML = "Correct";
+                } else{
+                    button.style.backgroundColor = "red";
+                    document.getElementById("response1").innerHTML = "Incorrect";
+                }
+            }
+
+        // Free response
+        function checkFreeResp(){
+            let checkButton = document.getElementById("check");
+            checkButton.onclick = function() {checkAnswer()}
+        }
+
+        function checkAnswer(){
+            let input = document.querySelector("input");
+            if(input.value == "kodiak" || input.value == "kodiak bear" )
+            {
+                input.style.backgroundColor = "green";
+                document.getElementById("response2").innerHTML = "Correct";
+            } else {
+                input.style.backgroundColor = "red";
+                document.getElementById("response2").innerHTML = "Incorrect";
+            }
+        }
+
+        checkFreeResp();
+        checkClicked();
+    </script>
+    </body>
+</html>
